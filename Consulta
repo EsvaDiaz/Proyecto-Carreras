@@ -1,0 +1,35 @@
+import tkinter as tk
+from tkinter import messagebox
+from pyswip import Prolog
+
+# Conexión a la base de datos en Prolog
+prolog = Prolog()
+prolog.consult("ruta/a/tu/base_de_datos.pl")  # Reemplaza con la ruta correcta
+
+# Función para consultar la carrera
+def consultar_carrera():
+    nombre_estudiante = entry_nombre.get().lower()
+    query = f"estudiante({nombre_estudiante}, Carrera)"
+    result = list(prolog.query(query))
+    if result:
+        carrera = result[0]["Carrera"]
+        messagebox.showinfo("Resultado", f"{nombre_estudiante.capitalize()} estudia {carrera}.")
+    else:
+        messagebox.showerror("Error", "Estudiante no encontrado en la base de datos.")
+
+# Crear ventana
+root = tk.Tk()
+root.title("Consulta de Carreras")
+
+# Etiqueta y campo de entrada
+label_nombre = tk.Label(root, text="Nombre del estudiante:")
+entry_nombre = tk.Entry(root)
+label_nombre.pack()
+entry_nombre.pack()
+
+# Botón para consultar
+btn_consultar = tk.Button(root, text="Consultar", command=consultar_carrera)
+btn_consultar.pack()
+
+# Ejecutar la interfaz
+root.mainloop()
