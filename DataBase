@@ -1,0 +1,14 @@
+% Base de datos de estudiantes y sus carreras
+estudiante(juan, ingenieria_informatica).
+estudiante(maria, medicina).
+estudiante(pedro, arquitectura).
+estudiante(laura, derecho).
+estudiante(carlos, ingenieria_electrica).
+estudiante(ana, psicologia).
+estudiante(alejandro, economia).
+estudiante(isabel, biologia).
+estudiante(diego, ciencias_politicas).
+
+% Regla para consultar la carrera de un estudiante
+carrera_de_estudiante(Estudiante, Carrera) :-
+    estudiante(Estudiante, Carrera).
